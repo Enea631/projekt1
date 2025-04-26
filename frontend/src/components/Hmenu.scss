@@ -1,0 +1,39 @@
+/* MenuHighlights.scss */
+.menu-highlights {
+    padding: 3rem 2rem;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .menu-highlights h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .highlight-cards {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .highlight-card {
+    width: 250px;
+    text-align: center;
+  }
+  
+  .highlight-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .highlight-card h3 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .highlight-card p {
+    font-size: 1.1rem;
+    color: #777;
+  }
+  

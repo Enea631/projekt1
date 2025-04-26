@@ -1,0 +1,64 @@
+
+/* About Section */
+.habout {
+  position: relative;
+  padding: 3rem 2rem;
+  background-color: #f5f5f0;
+  text-align: center;
+  border-radius: 8px; /* Softens the corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+  transition: all 0.3s ease; /* Smooth hover transition */
+  
+  // /* Background Image (if needed) */
+  // background-image: url('/images/about-background.jpg'); 
+  // background-size: cover;
+  // background-position: center;
+
+  /* Adding an overlay for better text contrast */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Darker overlay */
+    z-index: -1;
+  }
+
+  /* Responsive padding */
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Heading Style */
+.habout h2 {
+  font-size: 2.8rem;
+  font-weight: 700; /* Bolder text */
+  color: #333; /* Darker text for contrast */
+  margin-bottom: 1rem;
+  letter-spacing: 1px; /* Adds spacing for elegance */
+  text-transform: capitalize; /* Capitalize each word */
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #e74c3c; /* Subtle hover effect */
+  }
+}
+
+/* Paragraph Style */
+.habout p {
+  font-size: 1.2rem;
+  color: #555;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6; /* Increased line-height for readability */
+  text-align: justify; /* Makes paragraph look more organized */
+  padding: 0 1rem;
+}
+
+
+  
+  
+
