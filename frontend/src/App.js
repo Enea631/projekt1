@@ -7,6 +7,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Navbar from './components/Navb';
 import Footer from './components/Footer';
+import AdminPage from './pages/AdminPage';
+import AdminLogin from './pages/AdminLogin';
 
 
 
@@ -20,6 +22,8 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminPage />} /> 
       </Routes>
       <Footer />
     </>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const menuCategories = [
+const MenuItem = [
   {
     category: 'Pasta',
     items: [
@@ -94,4 +94,4 @@ const menuCategories = [
     ],
   },
 ];
-export default menuCategories;
+export default MenuItem;
