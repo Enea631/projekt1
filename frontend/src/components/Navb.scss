@@ -27,7 +27,6 @@
   &__toggle {
     display: none;
     flex-direction: column;
-    justify-content: center;
     gap: 5px;
     background: none;
     border: none;
@@ -39,16 +38,31 @@
       background-color: #fff;
       border-radius: 2px;
       transition: all 0.3s ease;
+
+      &.open:nth-child(1) {
+        transform: rotate(45deg) translateY(8px);
+      }
+
+      &.open:nth-child(2) {
+        opacity: 0;
+      }
+
+      &.open:nth-child(3) {
+        transform: rotate(-45deg) translateY(-8px);
+      }
     }
 
-    .bar.open:nth-child(1) {
-      transform: rotate(45deg) translateY(8px);
-    }
-    .bar.open:nth-child(2) {
-      opacity: 0;
-    }
-    .bar.open:nth-child(3) {
-      transform: rotate(-45deg) translateY(-8px);
+    .search-btn {
+      background-color: transparent;
+      border: none;
+      color: #f8f1e7;
+      padding: 0.4rem;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
     }
   }
 
@@ -56,6 +70,10 @@
     display: flex;
     align-items: center;
     gap: 2rem;
+
+    &.active {
+      display: flex;
+    }
 
     @media (max-width: 768px) {
       flex-direction: column;
@@ -69,10 +87,11 @@
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
       display: none;
       width: 220px;
-    }
 
-    &.active {
-      display: flex;
+      .search-btn.d-md-none {
+        margin-top: 0.75rem;
+        padding: 0.4rem 0.6rem;
+      }
     }
   }
 
@@ -152,9 +171,75 @@
     }
   }
 
+  // Show toggle on mobile
   @media (max-width: 768px) {
     &__toggle {
       display: flex;
+    }
+  }
+
+  .nav-search-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: transparent;
+    padding: 10px;
+
+    .search-group {
+      display: flex;
+      align-items: center;
+      background-color: #f3e4cb;
+      overflow: hidden;
+
+      .search-input {
+        border: none;
+        border-radius: 6px;
+        padding: 0.4rem 0.75rem;
+        font-size: 0.9rem;
+        color: #0b0b0b;
+        background-color: transparent;
+        width: 130px;
+
+        &::placeholder {
+          color: #8b0000;
+          opacity: 0.6;
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
+
+      .search-btn {
+        border: none;
+        background-color: transparent;
+        color: #8b0000;
+        padding: 0 0.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background-color: rgba(255, 221, 188, 0.3);
+          color: #6e0000;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-top: 1rem;
+
+      .search-group {
+        width: 100%;
+
+        .search-input {
+          width: 100%;
+        }
+      }
     }
   }
 }

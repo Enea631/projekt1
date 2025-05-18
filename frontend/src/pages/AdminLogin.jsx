@@ -25,7 +25,8 @@ const AdminLogin = () => {
   };
 
   return (
-    <div>
+    <div className='admin-login'>
+      <div className='card'>
       <h2>Admin Login</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -44,9 +45,10 @@ const AdminLogin = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit">Login</button>
+        <button className='login' type="submit">Login</button>
       </form>
       {error && <p>{error}</p>}
+    </div>
     </div>
   );
 };

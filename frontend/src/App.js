@@ -9,6 +9,7 @@ import Navbar from './components/Navb';
 import Footer from './components/Footer';
 import AdminPage from './pages/AdminPage';
 import AdminLogin from './pages/AdminLogin';
+import SearchResult from './components/SearchResult';
 
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+         <Route path="/search" element={<SearchResult />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminPage />} /> 
       </Routes>

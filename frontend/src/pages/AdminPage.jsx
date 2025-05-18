@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AdminPage.scss';
 import { format } from 'date-fns';
-import { Pencil, Trash2 } from "lucide-react"; 
-import { useNavigate } from 'react-router-dom'; 
+import { Pencil, Trash2 } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
 
 const AdminPage = () => {
@@ -96,28 +96,84 @@ const AdminPage = () => {
       console.error('Error fetching orders:', err);
     }
   };
-
-  // Handle Menu Item Form Submission (Create/Update)
   const handleMenuSubmit = async (e) => {
-    e.preventDefault();
-    const updatedForm = { ...menuForm, itemPrice: parseFloat(menuForm.itemPrice) };
+  e.preventDefault();
 
-    try {
-      if (menuForm._id) {
-        const response = await axios.put(`http://localhost:5000/api/menu/${menuForm._id}`, updatedForm);
-        alert('Menu item updated successfully!');
-        setMenuItems(prev => prev.map(item => (item._id === menuForm._id ? response.data : item)));
-      } else {
-        const response = await axios.post('http://localhost:5000/api/menu', updatedForm);
-        alert('Menu item created successfully!');
-        setMenuItems(prev => [...prev, response.data]);
-      }
-      setMenuForm({ itemName: '', itemDescription: '', itemPrice: '', itemCategory: '', itemImage: '' });
-    } catch (err) {
-      console.error('Error submitting menu item:', err);
-      alert('Failed to submit menu item.');
+  const formData = new FormData();
+  formData.append('itemName', menuForm.itemName);
+  formData.append('itemDescription', menuForm.itemDescription);
+  formData.append('itemPrice', parseFloat(menuForm.itemPrice));
+  formData.append('itemCategory', menuForm.itemCategory);
+
+  // Check if itemImage is a File object before appending
+  if (menuForm.itemImage instanceof File) {
+    formData.append('itemImage', menuForm.itemImage);
+  }
+
+  try {
+    if (menuForm._id) {
+      const response = await axios.put(
+        `http://localhost:5000/api/menu/${menuForm._id}`,
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }
+      );
+      alert('Menu item updated successfully!');
+      setMenuItems((prev) =>
+        prev.map((item) => (item._id === menuForm._id ? response.data : item))
+      );
+    } else {
+      const response = await axios.post(
+        'http://localhost:5000/api/menu',
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }
+      );
+      alert('Menu item created successfully!');
+      setMenuItems((prev) => [...prev, response.data]);
     }
-  };
+
+    // Reset form
+    setMenuForm({
+      itemName: '',
+      itemDescription: '',
+      itemPrice: '',
+      itemCategory: '',
+      itemImage: '',
+    });
+
+    // Clear file input manually
+    document.querySelector('input[type="file"]').value = '';
+  } catch (err) {
+    console.error('Error submitting menu item:', err);
+    alert('Failed to submit menu item.');
+  }
+};
+
+
+  // // Handle Menu Item Form Submission (Create/Update)
+  // const handleMenuSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const updatedForm = { ...menuForm, itemPrice: parseFloat(menuForm.itemPrice) };
+
+  //   try {
+  //     if (menuForm._id) {
+  //       const response = await axios.put(`http://localhost:5000/api/menu/${menuForm._id}`, updatedForm);
+  //       alert('Menu item updated successfully!');
+  //       setMenuItems(prev => prev.map(item => (item._id === menuForm._id ? response.data : item)));
+  //     } else {
+  //       const response = await axios.post('http://localhost:5000/api/menu', updatedForm);
+  //       alert('Menu item created successfully!');
+  //       setMenuItems(prev => [...prev, response.data]);
+  //     }
+  //     setMenuForm({ itemName: '', itemDescription: '', itemPrice: '', itemCategory: '', itemImage: '' });
+  //   } catch (err) {
+  //     console.error('Error submitting menu item:', err);
+  //     alert('Failed to submit menu item.');
+  //   }
+  // };
 
   // Handle Delete Menu Item
   const handleDeleteMenuItem = async (id) => {
@@ -183,7 +239,7 @@ const AdminPage = () => {
         <p>Loading...</p>
       ) : (
         <div className="admin-sections">
-         
+
 
           {/* Contacts Section */}
           <section className="admin-section">
@@ -208,7 +264,7 @@ const AdminPage = () => {
                     <td>{contact.phone}</td>
                     <td>{contact.message}</td>
                     <td>
-                      <button onClick={() => handleDeleteContact(contact._id)}>Delete</button>
+                      <button className='btn' onClick={() => handleDeleteContact(contact._id)}>Delete</button>
                     </td>
                   </tr>
                 ))}
@@ -239,7 +295,7 @@ const AdminPage = () => {
                     <td>{booking.time}</td>
                     <td>{booking.people}</td>
                     <td>
-                      <button onClick={() => handleDeleteBooking(booking._id)}>Delete</button>
+                      <button className="btn" onClick={() => handleDeleteBooking(booking._id)}>Delete</button>
                     </td>
                   </tr>
                 ))}
@@ -247,88 +303,90 @@ const AdminPage = () => {
             </table>
           </section>
 
-         
-          {/* Orders Section */}
-<section className="admin-section">
-  <h2>Orders</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Order ID</th>
-        <th>Items</th>
-        <th>Customer Info</th>
-        <th>Payment Method</th>
-        <th>Total (€)</th>
-        <th>Created At</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {orders.map((order) => (
-        <tr key={order._id}>
-          <td>{order._id}</td>
-          <td>
-            {order.items.map((item, idx) => (
-              <div key={idx}>
-                {item.itemName} × {item.quantity} @ €{item.price.toFixed(2)}
-              </div>
-            ))}
-          </td>
-          <td>
-            <div><strong>Name:</strong> {order.customer.name}</div>
-            <div><strong>Phone:</strong> {order.customer.phone}</div>
-            <div><strong>Address:</strong> {order.customer.address}</div>
-          </td>
-          <td>{order.customer.paymentMethod}</td>
-          <td>€{order.total.toFixed(2)}</td>
-          <td>{new Date(order.createdAt).toLocaleString()}</td>
-          <td>
-            <button onClick={() => handleDeleteOrder(order._id)}>Delete</button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</section>
 
-        </div>
-      )}
-       {/* Menu Items Section */}
-       <section className="admin-section">
-            <h2>Menu Items</h2>
+          {/* Orders Section */}
+          <section className="admin-section">
+            <h2>Orders</h2>
             <table>
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Price</th>
-                  <th>Category</th>
-                  <th>Image</th>
+                  <th>Order ID</th>
+                  <th>Items</th>
+                  <th>Customer Info</th>
+                  <th>Payment Method</th>
+                  <th>Total (€)</th>
+                  <th>Created At</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                {menuItems.map((item) => (
-                  <tr key={item._id}>
-                    <td>{item.itemName}</td>
-                    <td>{item.itemDescription}</td>
-                    <td>{item.itemPrice}€</td>
-                    <td>{item.itemCategory}</td>
-                    <td>{item.itemImage ? <img src={item.itemImage} alt={item.itemName} /> : 'No Image'}</td>
+                {orders.map((order) => (
+                  <tr key={order._id}>
+                    <td>{order._id}</td>
                     <td>
-  <button onClick={() => setMenuForm(item)} title="Edit" className="icon-button">
-    <Pencil size={16} />
-  </button>
-  <button onClick={() => handleDeleteMenuItem(item._id)} title="Delete" className="icon-button">
-    <Trash2 size={16}  />
-  </button>
-</td>
-
+                      {order.items.map((item, idx) => (
+                        <div key={idx}>
+                          {item.itemName} × {item.quantity} @ €{item.price.toFixed(2)}
+                        </div>
+                      ))}
+                    </td>
+                    <td>
+                      <div><strong>Name:</strong> {order.customer.name}</div>
+                      <div><strong>Phone:</strong> {order.customer.phone}</div>
+                      <div><strong>Address:</strong> {order.customer.address}</div>
+                    </td>
+                    <td>{order.customer.paymentMethod}</td>
+                    <td>€{order.total.toFixed(2)}</td>
+                    <td>{new Date(order.createdAt).toLocaleString()}</td>
+                    <td>
+                      <button className="btn" onClick={() => handleDeleteOrder(order._id)}>Delete</button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </section>
+
+        </div>
+      )}
+      {/* Menu Items Section */}
+      <section className="admin-section">
+        <h2>Menu Items</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Image</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {menuItems.map((item) => (
+              <tr key={item._id}>
+                <td>{item.itemName}</td>
+                <td>{item.itemDescription}</td>
+                <td>{item.itemPrice}€</td>
+                <td>{item.itemCategory}</td>
+                <td>
+  {item.itemImage ? <img src={`http://localhost:5000${item.itemImage}`} alt={item.itemName} /> : 'No Image'}
+</td>
+                <td>
+                  <button  onClick={() => setMenuForm(item)} title="Edit" className="btn edit-button">
+                    <Pencil size={16} />
+                  </button>
+                  <button onClick={() => handleDeleteMenuItem(item._id)} title="Delete" className="btn delete-button">
+                    <Trash2 size={16} />
+                  </button>
+                </td>
+
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
 
       {/* Create/Update Menu Item Form */}
       <section className="create-menu-section">
@@ -361,12 +419,13 @@ const AdminPage = () => {
             required
           />
           <input
-            type="text"
-            placeholder="Image URL"
-            value={menuForm.itemImage}
-            onChange={(e) => setMenuForm({ ...menuForm, itemImage: e.target.value })}
+            type="file"
+            placeholder="Image"
+            name="itemImage"
+            // value={menuForm.itemImage}
+            onChange={(e) => setMenuForm({ ...menuForm, itemImage: e.target.files[0] })}
           />
-          <button type="submit">{menuForm._id ? 'Update' : 'Create'} Menu Item</button>
+          <button className="btn createform" type="submit">{menuForm._id ? 'Update' : 'Create'} Menu Item</button>
         </form>
       </section>
     </div>

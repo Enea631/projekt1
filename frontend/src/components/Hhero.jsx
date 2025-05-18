@@ -18,7 +18,7 @@ const Hhero = () => {
 
   // Hero section styling
   const heroStyle = {
-    backgroundImage: `url("/images/background.jpg")`,
+    backgroundImage: `url("./image/background.jpg")`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     height: '70vh',

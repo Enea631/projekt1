@@ -7,12 +7,11 @@ const router = express.Router();
 // Dummy admin credentials (replace with a database check in production)
 const ADMIN_CREDENTIALS = {
   username: 'admin',
-  password: 'password123', // Use hashed passwords in production
+  password: '123', // Use hashed passwords in production
 };
 
 // Get secret key from .env
-const JWT_SECRET = process.env.JWT_SECRET;
-
+const JWT_SECRET = process.env.JWT_SECRET;    
 // Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;

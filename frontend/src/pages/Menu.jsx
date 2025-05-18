@@ -10,7 +10,7 @@ const Menu = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("Credit Card");
+  const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/menu")
@@ -119,7 +119,7 @@ const Menu = () => {
               <div className="menu-items">
                 {items.map((item) => (
                   <div key={item._id} className="menu-item">
-                    <img src={item.itemImage} alt={item.itemName} className="menu-item-image" />
+                    <img src={`http://localhost:5000${item.itemImage}`} alt={item.itemName} className="menu-item-image" />
                     <div className="menu-item-details">
                       <h4>{item.itemName}</h4>
                       <p>{item.itemDescription}</p>
@@ -133,7 +133,7 @@ const Menu = () => {
                         })}
                         className="add-to-cart-btn"
                       >
-                        Add to Cart
+                        <i>ADD TO CART</i>
                       </button>
                     </div>
                   </div>

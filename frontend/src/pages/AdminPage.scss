@@ -1,24 +1,23 @@
-/* Overall Admin Dashboard */
+
+/* Base Styles */
 .admin-dashboard {
   font-family: 'Arial', sans-serif;
-  background-color: #f3f4f6; /* Light gray background */
+  background-color: #f3f4f6;
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    text-align: center;
+    font-weight: bold;
+  }
 }
 
-/* Heading Styles */
-h1 {
-  font-size: 3rem;
-  margin-bottom: 30px;
-  color: #2c3e50; /* Darker text color */
-  text-align: center;
-  font-weight: bold;
-}
-
-/* Section Styling */
 .admin-sections {
   width: 100%;
   max-width: 1200px;
@@ -28,193 +27,37 @@ h1 {
   gap: 30px;
 }
 
+/* Section Card */
 .admin-section {
-  background-color: #ffffff; /* White background */
+  background: #fff;
   border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   padding: 30px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 40px; /* Add spacing below each section */
+  margin-bottom: 40px;
 
   &:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
+    transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #34495e;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
   }
 }
 
-.admin-section h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #34495e; /* Slightly darker heading */
-  border-bottom: 2px solid #007bff; /* Blue underline */
-  padding-bottom: 10px;
-}
-
-/* Table Styles */
+/* Table Styles (reusable) */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: #ffffff;
+  background: #fff;
   border-radius: 8px;
   overflow: hidden;
-}
-
-th,
-td {
-  padding: 15px 20px;
-  text-align: left;
-  font-size: 1rem;
-  border-bottom: 1px solid #eaeaea;
-}
-
-th {
-  background-color: #74b1f2; /* Blue header */
-  color: #ffffff; /* White text */
-  font-weight: bold;
-}
-
-tr:nth-child(even) {
-  background-color: #f9f9f9; /* Light gray for even rows */
-}
-
-tr:hover {
-  background-color: #f1f1f1; /* Slightly darker gray on hover */
-}
-
-td img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-}
-
-/* Button Styles */
-button {
-  background-color: #007bff;
-  color: #ffffff;
-  border: none;
-  padding: 10px 15px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-
-  &:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); /* Slight zoom on hover */
-  }
-
-  &:focus {
-    outline: none;
-  }
-}
-
-/* Edit/Delete Buttons */
-button:nth-child(1) {
-  background-color: #28a745; /* Green for edit */
-}
-
-button:nth-child(1):hover {
-  background-color: #218838;
-}
-
-button:nth-child(2) {
-  background-color: #dc3545; /* Red for delete */
-}
-
-button:nth-child(2):hover {
-  background-color: #c82333;
-}
-
-/* Form Styles */
-form {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-input[type="text"],
-textarea,
-input[type="number"] {
-  padding: 12px;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
-
-  &:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-}
-
-textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-/* Submit Button in Form */
-button[type="submit"] {
-  background-color: #007bff;
-  padding: 12px 20px;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  font-weight: bold;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-/* Loading Spinner */
-.loading-spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  color: #007bff;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Menu Items Section */
-.admin-section.menu-items {
-  background-color: #ffffff;
-  padding: 20px 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
-  max-width: 100%;
-  overflow-x: auto; /* Allow horizontal scroll on small screens */
-  margin: 0 auto;
-
-  h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #2c3e50;
-    text-align: center;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 10px;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-  }
 
   th,
   td {
@@ -225,17 +68,17 @@ button[type="submit"]:hover {
   }
 
   th {
-    background-color: #74b1f2;
-    color: #ffffff;
+    background:#74b1f2;
+    color: #fff;
     font-weight: bold;
   }
 
   tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background: #f9f9f9;
   }
 
   tr:hover {
-    background-color: #f1f1f1;
+    background: #f1f1f1;
   }
 
   td img {
@@ -245,125 +88,134 @@ button[type="submit"]:hover {
     border-radius: 8px;
     border: 1px solid #ddd;
   }
+}
 
-  /* Action buttons for Edit and Delete */
-  .action-buttons {
-    display: flex;
-    gap: 10px;
-  }
 
-  button {
-    padding: 10px 15px;
-    font-size: 1rem;
-    border-radius: 5px;
+.btn{
+
+ display: inline-block;
+    outline: 0;
+    appearance: none;
+    padding: 0px 12px;
+    border-radius: 4px;
+    text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    background: #fff;
+    background-size: 100% 200%;
+    background-position: bottom;
+    border: 1px solid rgb(137, 151, 155);
+    box-shadow: rgb(6 22 33 / 30%) 0px 1px 2px;
+    color: rgb(61, 79, 88);
+    font-size: 14px;
+    font-weight: 400;
+    height: 36px;
+    transition: background-position 0.4s ease-in-out, box-shadow 0.4s, border-color 0.4s;
+
+  &:hover {
+    background-position: top;
+    background: rgb(255, 241, 241);
+    border: 1px solid rgb(93, 108, 116);
+    box-shadow: rgb(111, 5, 5) 0px 7px 7px, 
   }
 
-  button:nth-child(1) {
-    background-color: #28a745; /* Green for edit */
+  &:focus {
+    outline: none;
   }
 
-  button:nth-child(1):hover {
-    background-color: #218838;
-  }
 
-  button:nth-child(2) {
-    background-color: #dc3545; /* Red for delete */
-  }
+  &.edit-button {
+    background: #1b7a31;
+    color: #fff;
+    border-radius: 8px;
+    margin-right: 4px;
 
-  button:nth-child(2):hover {
-    background-color: #c82333;
-  }
-
-  /* Responsive Styles */
-  @media (max-width: 980px) and (min-width: 780px) {
-    .admin-section.menu-items {
-      padding: 20px;
-    }
-    table {
-      font-size: 0.9rem;
-      overflow-x: auto;
-      display: block; /* Make the table scrollable */
-    }
-
-    th,
-    td {
-      padding: 10px; /* Adjust padding for small screens */
-    }
-
-    td img {
-      width: 50px;
-      height: 50px;
-    }
-
-    .action-buttons {
-      flex-direction: column;
+    &:hover {
+      background: #106523;
+      box-shadow: #154b1d 0px 7px 7px;
+      color: #fff;
     }
   }
+   &.delete-button {
+    background: #c81d2e;
+    color: #fff;
+    border-radius: 8px;
 
-  @media (max-width: 780px) {
-    table {
-      font-size: 0.85rem;
-      overflow-x: auto; /* Enable horizontal scrolling for table */
-      display: block; /* Make the table scrollable */
-      white-space: nowrap;
-    }
-
-    th,
-    td {
-      padding: 8px;
-    }
-
-    td img {
-      width: 40px;
-      height: 40px;
-    }
-
-    .action-buttons {
-      flex-direction: column;
+    &:hover {
+      background: #a1111f;
     }
   }
+    &.createform {
+    background: #007bff;
+    color: #fff;
 
-  @media (max-width: 730px) {
-    .admin-section.menu-items {
-      padding: 15px;
-    }
-
-    table {
-      font-size: 0.8rem;
-    }
-
-    td img {
-      width: 35px;
-      height: 35px;
-    }
-
-    th,
-    td {
-      padding: 6px;
-    }
-
-    button {
-      font-size: 0.9rem;
-      padding: 8px;
-    }
-
-    .action-buttons {
-      gap: 5px;
+    &:hover {
+      background: #0056b3;
+      box-shadow: #0056b3 0px 7px 7px;
+      color: #fff;
     }
   }
 }
 
-/* Create Menu Items Section */
+
+  
+
+
+/* Forms */
+form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+
+  input[type='text'],
+  input[type='number'],
+  textarea {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #007bff;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu Items */
+.admin-section.menu-items,
 .create-menu-section {
-  background-color: #ffffff;
+  background: #fff;
   padding: 20px 40px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
-  max-width: 900px;
-  margin: 0 auto;
+  margin: 40px auto 0;
+  max-width: 100%;
+  overflow-x: auto;
 
   h2 {
     font-size: 1.8rem;
@@ -374,92 +226,72 @@ button[type="submit"]:hover {
     padding-bottom: 10px;
   }
 
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.create-menu-section {
+  max-width: 900px;
+
   form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 
-    input[type="text"],
-    input[type="number"],
-    textarea {
-      padding: 12px;
-      font-size: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
-      &:focus {
-        border-color: #007bff;
-        box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
-        outline: none;
-      }
-    }
-
     textarea {
       grid-column: span 2;
-      resize: vertical;
-      min-height: 100px;
     }
 
-    button[type="submit"] {
+    button[type='submit'] {
       grid-column: span 2;
-      background-color: #007bff;
-      color: #ffffff;
-      padding: 12px 20px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-
-      &:hover {
-        background-color: #0056b3;
-        transform: scale(1.03);
-      }
-
-      &:focus {
-        outline: none;
-      }
     }
   }
 }
 
-/* Responsive Styles */
+/* Responsive Queries */
+@media (max-width: 980px) {
+  table {
+    font-size: 0.9rem;
+    display: block;
+    overflow-x: auto;
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 768px) {
   .admin-dashboard {
     padding: 15px 10px;
   }
 
-  .admin-section {
-    padding: 15px;
-    margin-bottom: 20px;
-  }
-
+  .admin-section,
   .create-menu-section {
     padding: 15px;
+    margin-bottom: 20px;
     max-width: 100%;
-  }
 
-  .create-menu-section h2 {
-    font-size: 1.4rem;
-  }
+    h2 {
+      font-size: 1.4rem;
+    }
 
-  .create-menu-section form {
-    grid-template-columns: 1fr;
-    gap: 15px;
+    form {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
   }
 
   table {
     font-size: 0.85rem;
-    overflow-x: auto;
-    display: block;
     white-space: nowrap;
-  }
-
-  th,
-  td {
-    padding: 8px;
   }
 
   td img {
@@ -477,16 +309,9 @@ button[type="submit"]:hover {
     font-size: 1.2rem;
   }
 
-  .admin-section {
-    padding: 10px;
-  }
-
-  .create-menu-section form {
-    grid-template-columns: 1fr;
-  }
-
-  table {
-    font-size: 0.75rem;
+  td img {
+    width: 30px;
+    height: 30px;
   }
 
   th,
@@ -494,13 +319,12 @@ button[type="submit"]:hover {
     padding: 6px;
   }
 
-  td img {
-    width: 30px;
-    height: 30px;
-  }
-
   button {
     font-size: 0.9rem;
     padding: 8px;
+  }
+
+  .action-buttons {
+    gap: 5px;
   }
 }

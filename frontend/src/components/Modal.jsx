@@ -103,7 +103,7 @@ const Modal = ({ isOpen, onClose }) => {
               required
             />
           </label>
-          <button type="submit" className="submit-btn">Reserve Now</button>
+          <button type="submit" className="bm">Reserve Now</button>
         </form>
         <button className="close-btn" onClick={onClose}>Close</button>
       </div>

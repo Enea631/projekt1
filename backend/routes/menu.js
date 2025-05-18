@@ -1,6 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const MenuItem = require('../models/MenuItem.js');
+const multer = require('multer');
+const path = require('path');
+
+// Multer setup
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'images/'); // folder for uploaded images, create if needed
+  },
+  filename: function (req, file, cb) {
+    // Use timestamp + original file extension for uniqueness
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage });
 
 // @route   GET /api/menu
 // @desc    Get all menu items
@@ -18,8 +32,14 @@ router.get('/', async (req, res) => {
 // @route   POST /api/menu
 // @desc    Create a new menu item
 // @access  Public
-router.post('/', async (req, res) => {
-  const { itemCategory, itemName, itemDescription, itemPrice, itemImage } = req.body;
+router.post('/', upload.single('itemImage'), async (req, res) => {
+  const { itemCategory, itemName, itemDescription, itemPrice } = req.body;
+  let itemImage = '';
+
+  if (req.file) {
+    // Save the file path or URL
+    itemImage = `/images/${req.file.filename}`;
+  }
 
   if (!itemName || !itemCategory || !itemPrice) {
     return res.status(400).json({ message: "Item name, category, and price are required." });
@@ -30,7 +50,7 @@ router.post('/', async (req, res) => {
     itemName,
     itemDescription: itemDescription || '',
     itemPrice,
-    itemImage: itemImage || ''
+    itemImage
   });
 
   try {
@@ -45,8 +65,13 @@ router.post('/', async (req, res) => {
 // @route   PUT /api/menu/:id
 // @desc    Update a menu item
 // @access  Public
-router.put('/:id', async (req, res) => {
-  const { itemCategory, itemName, itemDescription, itemPrice, itemImage } = req.body;
+router.put('/:id', upload.single('itemImage'), async (req, res) => {
+  const { itemCategory, itemName, itemDescription, itemPrice } = req.body;
+  let itemImage = req.body.itemImage || '';
+
+  if (req.file) {
+    itemImage = `/images/${req.file.filename}`;
+  }
 
   if (!itemName || !itemCategory || !itemPrice) {
     return res.status(400).json({ message: "Item name, category, and price are required." });

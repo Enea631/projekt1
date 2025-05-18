@@ -2,12 +2,15 @@
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./db');  // points to db.js
+const path = require('path');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 connectDB();
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 app.use('/api/menu', require('./routes/menu'));
 app.use('/api/orders', require('./routes/orders'));
