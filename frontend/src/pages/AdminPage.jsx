@@ -7,36 +7,36 @@ import { useNavigate } from 'react-router-dom';
 
 
 const AdminPage = () => {
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate(); 
 
-  // Token validation logic
+  
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-      // Redirect to login if no token is found
+    
       navigate('/admin-login');
     } else {
-      // Optionally verify the token with the backend
+      
       axios
         .get('http://localhost:5000/api/admin/dashboard', {
           headers: { Authorization: `Bearer ${token}` },
         })
         .catch(() => {
-          // If token is invalid or expired, remove it and redirect to login
+         
           localStorage.removeItem('token');
           navigate('/admin-login');
         });
     }
   }, [navigate]);
 
-  // State variables for storing data
+
   const [menuItems, setMenuItems] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // State for form handling (Create/Update menu item)
+  
   const [menuForm, setMenuForm] = useState({
     itemName: '',
     itemDescription: '',
@@ -45,7 +45,7 @@ const AdminPage = () => {
     itemImage: '',
   });
 
-  // Fetch data on component mount
+
   useEffect(() => {
     fetchMenuItems();
     fetchContacts();
@@ -53,7 +53,7 @@ const AdminPage = () => {
     fetchOrders();
   }, []);
 
-  // Fetch Menu Items
+  
   const fetchMenuItems = async () => {
     setLoading(true);
     try {
@@ -67,7 +67,7 @@ const AdminPage = () => {
     }
   };
 
-  // Fetch Contacts
+  
   const fetchContacts = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/contacts');
@@ -77,7 +77,7 @@ const AdminPage = () => {
     }
   };
 
-  // Fetch Bookings
+  
   const fetchBookings = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/bookings');
@@ -87,7 +87,7 @@ const AdminPage = () => {
     }
   };
 
-  // Fetch Orders
+  
   const fetchOrders = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/orders');
@@ -105,7 +105,7 @@ const AdminPage = () => {
   formData.append('itemPrice', parseFloat(menuForm.itemPrice));
   formData.append('itemCategory', menuForm.itemCategory);
 
-  // Check if itemImage is a File object before appending
+  
   if (menuForm.itemImage instanceof File) {
     formData.append('itemImage', menuForm.itemImage);
   }
@@ -135,7 +135,7 @@ const AdminPage = () => {
       setMenuItems((prev) => [...prev, response.data]);
     }
 
-    // Reset form
+  
     setMenuForm({
       itemName: '',
       itemDescription: '',
@@ -144,7 +144,7 @@ const AdminPage = () => {
       itemImage: '',
     });
 
-    // Clear file input manually
+    
     document.querySelector('input[type="file"]').value = '';
   } catch (err) {
     console.error('Error submitting menu item:', err);
@@ -153,29 +153,7 @@ const AdminPage = () => {
 };
 
 
-  // // Handle Menu Item Form Submission (Create/Update)
-  // const handleMenuSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const updatedForm = { ...menuForm, itemPrice: parseFloat(menuForm.itemPrice) };
 
-  //   try {
-  //     if (menuForm._id) {
-  //       const response = await axios.put(`http://localhost:5000/api/menu/${menuForm._id}`, updatedForm);
-  //       alert('Menu item updated successfully!');
-  //       setMenuItems(prev => prev.map(item => (item._id === menuForm._id ? response.data : item)));
-  //     } else {
-  //       const response = await axios.post('http://localhost:5000/api/menu', updatedForm);
-  //       alert('Menu item created successfully!');
-  //       setMenuItems(prev => [...prev, response.data]);
-  //     }
-  //     setMenuForm({ itemName: '', itemDescription: '', itemPrice: '', itemCategory: '', itemImage: '' });
-  //   } catch (err) {
-  //     console.error('Error submitting menu item:', err);
-  //     alert('Failed to submit menu item.');
-  //   }
-  // };
-
-  // Handle Delete Menu Item
   const handleDeleteMenuItem = async (id) => {
     if (window.confirm('Are you sure you want to delete this menu item?')) {
       try {
@@ -189,7 +167,7 @@ const AdminPage = () => {
     }
   };
 
-  // Handle Delete Contact
+  
   const handleDeleteContact = async (id) => {
     if (window.confirm('Are you sure you want to delete this contact?')) {
       try {
@@ -203,7 +181,6 @@ const AdminPage = () => {
     }
   };
 
-  // Handle Delete Booking
   const handleDeleteBooking = async (id) => {
     if (window.confirm('Are you sure you want to delete this booking?')) {
       try {
@@ -217,7 +194,7 @@ const AdminPage = () => {
     }
   };
 
-  // Handle Delete Order
+ 
   const handleDeleteOrder = async (id) => {
     if (window.confirm('Are you sure you want to delete this order?')) {
       try {
@@ -241,7 +218,6 @@ const AdminPage = () => {
         <div className="admin-sections">
 
 
-          {/* Contacts Section */}
           <section className="admin-section">
             <h2>Contacts</h2>
             <table>
@@ -272,7 +248,7 @@ const AdminPage = () => {
             </table>
           </section>
 
-          {/* Bookings Section */}
+          
           <section className="admin-section">
             <h2>Bookings</h2>
             <table>
@@ -304,7 +280,7 @@ const AdminPage = () => {
           </section>
 
 
-          {/* Orders Section */}
+          
           <section className="admin-section">
             <h2>Orders</h2>
             <table>
@@ -349,7 +325,8 @@ const AdminPage = () => {
 
         </div>
       )}
-      {/* Menu Items Section */}
+
+
       <section className="admin-section">
         <h2>Menu Items</h2>
         <table>
@@ -388,7 +365,7 @@ const AdminPage = () => {
         </table>
       </section>
 
-      {/* Create/Update Menu Item Form */}
+      
       <section className="create-menu-section">
         <h2>{menuForm._id ? 'Update' : 'Create'} Menu Item</h2>
         <form onSubmit={handleMenuSubmit}>
@@ -422,7 +399,6 @@ const AdminPage = () => {
             type="file"
             placeholder="Image"
             name="itemImage"
-            // value={menuForm.itemImage}
             onChange={(e) => setMenuForm({ ...menuForm, itemImage: e.target.files[0] })}
           />
           <button className="btn createform" type="submit">{menuForm._id ? 'Update' : 'Create'} Menu Item</button>

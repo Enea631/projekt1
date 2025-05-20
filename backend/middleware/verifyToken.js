@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config(); // Load environment variables
+require('dotenv').config(); 
 
-const JWT_SECRET = process.env.JWT_SECRET; // Get secret key from .env
+const JWT_SECRET = process.env.JWT_SECRET; 
 
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -10,12 +10,12 @@ const verifyToken = (req, res, next) => {
     return res.status(403).json({ message: 'Access denied. No token provided.' });
   }
 
-  const token = authHeader.split(' ')[1]; // Extract token from "Bearer <token>"
+  const token = authHeader.split(' ')[1]; 
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET); // Verify token
-    req.user = decoded; // Attach decoded token data to the request
-    next(); // Proceed to the next middleware or route handler
+    const decoded = jwt.verify(token, JWT_SECRET); 
+    req.user = decoded; 
+    next(); 
   } catch (err) {
     res.status(401).json({ message: 'Invalid or expired token.' });
   }

@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Booking = require("../models/book.js")
 
-// @route   GET /api/bookings
-// @desc    Get all bookings
+
 router.get('/', async (req, res) => {
   try {
     const bookings = await Booking.find();
@@ -13,8 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route   POST /api/bookings
-// @desc    Create a new booking
+
 router.post('/', async (req, res) => {
   const { name, email, date, time, people } = req.body;
   const newBooking = new Booking({ name, email, date, time, people });

@@ -1,5 +1,3 @@
-
-/* Base Styles */
 .admin-dashboard {
   font-family: 'Arial', sans-serif;
   background-color: #f3f4f6;
@@ -27,7 +25,6 @@
   gap: 30px;
 }
 
-/* Section Card */
 .admin-section {
   background: #fff;
   border-radius: 10px;
@@ -50,7 +47,6 @@
   }
 }
 
-/* Table Styles (reusable) */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -68,7 +64,7 @@ table {
   }
 
   th {
-    background:#74b1f2;
+    background: #74b1f2;
     color: #fff;
     font-weight: bold;
   }
@@ -90,38 +86,35 @@ table {
   }
 }
 
-
-.btn{
-
- display: inline-block;
-    outline: 0;
-    appearance: none;
-    padding: 0px 12px;
-    border-radius: 4px;
-    text-decoration: none;
-    cursor: pointer;
-    background: #fff;
-    background-size: 100% 200%;
-    background-position: bottom;
-    border: 1px solid rgb(137, 151, 155);
-    box-shadow: rgb(6 22 33 / 30%) 0px 1px 2px;
-    color: rgb(61, 79, 88);
-    font-size: 14px;
-    font-weight: 400;
-    height: 36px;
-    transition: background-position 0.4s ease-in-out, box-shadow 0.4s, border-color 0.4s;
+.btn {
+  display: inline-block;
+  outline: 0;
+  appearance: none;
+  padding: 0px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  background: #fff;
+  background-size: 100% 200%;
+  background-position: bottom;
+  border: 1px solid rgb(137, 151, 155);
+  box-shadow: rgb(6 22 33 / 30%) 0px 1px 2px;
+  color: rgb(61, 79, 88);
+  font-size: 14px;
+  font-weight: 400;
+  height: 36px;
+  transition: background-position 0.4s ease-in-out, box-shadow 0.4s, border-color 0.4s;
 
   &:hover {
     background-position: top;
     background: rgb(255, 241, 241);
     border: 1px solid rgb(93, 108, 116);
-    box-shadow: rgb(111, 5, 5) 0px 7px 7px, 
+    box-shadow: rgb(111, 5, 5) 0px 7px 7px;
   }
 
   &:focus {
     outline: none;
   }
-
 
   &.edit-button {
     background: #1b7a31;
@@ -135,7 +128,8 @@ table {
       color: #fff;
     }
   }
-   &.delete-button {
+
+  &.delete-button {
     background: #c81d2e;
     color: #fff;
     border-radius: 8px;
@@ -144,7 +138,8 @@ table {
       background: #a1111f;
     }
   }
-    &.createform {
+
+  &.createform {
     background: #007bff;
     color: #fff;
 
@@ -156,11 +151,6 @@ table {
   }
 }
 
-
-  
-
-
-/* Forms */
 form {
   background: #fff;
   padding: 30px;
@@ -193,7 +183,6 @@ form {
   }
 }
 
-/* Loading Spinner */
 .loading-spinner {
   display: flex;
   justify-content: center;
@@ -206,7 +195,6 @@ form {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Menu Items */
 .admin-section.menu-items,
 .create-menu-section {
   background: #fff;
@@ -250,7 +238,6 @@ form {
   }
 }
 
-/* Responsive Queries */
 @media (max-width: 980px) {
   table {
     font-size: 0.9rem;

@@ -144,12 +144,12 @@ const Menu = () => {
         )}
       </div>
 
-      {/* Cart Button */}
+     
       <button className="cart-button" onClick={toggleCart}>
         🛒 {cart.length} Items
       </button>
 
-      {/* Cart Modal */}
+     
       {isCartVisible && (
         <div className="cart-modal">
           <div className="cart-modal-content">
@@ -175,7 +175,7 @@ const Menu = () => {
               <p>Total: €{getTotalPrice()}</p>
             </div>
 
-            {/* Order Details Form */}
+           
             <div className="cart-form">
               <label>
                 Full Name:

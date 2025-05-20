@@ -171,13 +171,6 @@
     }
   }
 
-  // Show toggle on mobile
-  @media (max-width: 768px) {
-    &__toggle {
-      display: flex;
-    }
-  }
-
   .nav-search-form {
     display: flex;
     align-items: center;
@@ -240,6 +233,12 @@
           width: 100%;
         }
       }
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__toggle {
+      display: flex;
     }
   }
 }

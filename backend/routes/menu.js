@@ -4,21 +4,19 @@ const MenuItem = require('../models/MenuItem.js');
 const multer = require('multer');
 const path = require('path');
 
-// Multer setup
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'images/'); // folder for uploaded images, create if needed
+    cb(null, 'images/'); 
   },
   filename: function (req, file, cb) {
-    // Use timestamp + original file extension for uniqueness
+
     cb(null, Date.now() + path.extname(file.originalname));
   }
 });
 const upload = multer({ storage });
 
-// @route   GET /api/menu
-// @desc    Get all menu items
-// @access  Public
+
 router.get('/', async (req, res) => {
   try {
     const items = await MenuItem.find();
@@ -29,15 +27,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route   POST /api/menu
-// @desc    Create a new menu item
-// @access  Public
+
 router.post('/', upload.single('itemImage'), async (req, res) => {
   const { itemCategory, itemName, itemDescription, itemPrice } = req.body;
   let itemImage = '';
 
   if (req.file) {
-    // Save the file path or URL
+   
     itemImage = `/images/${req.file.filename}`;
   }
 
@@ -62,9 +58,7 @@ router.post('/', upload.single('itemImage'), async (req, res) => {
   }
 });
 
-// @route   PUT /api/menu/:id
-// @desc    Update a menu item
-// @access  Public
+
 router.put('/:id', upload.single('itemImage'), async (req, res) => {
   const { itemCategory, itemName, itemDescription, itemPrice } = req.body;
   let itemImage = req.body.itemImage || '';
@@ -101,9 +95,6 @@ router.put('/:id', upload.single('itemImage'), async (req, res) => {
   }
 });
 
-// @route   DELETE /api/menu/:id
-// @desc    Delete a menu item
-// @access  Public
 router.delete('/:id', async (req, res) => {
   try {
     const deletedItem = await MenuItem.findByIdAndDelete(req.params.id);

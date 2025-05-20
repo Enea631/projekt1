@@ -1,7 +1,6 @@
-// models/book.js
 const mongoose = require("mongoose");
 
-// Use mongoose.Schema to reference the Schema class
+
 const bookingSchema = new mongoose.Schema({
   name: { type: String },
   email: { type: String },

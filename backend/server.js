@@ -1,7 +1,6 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./db');  // points to db.js
+const connectDB = require('./db');  
 const path = require('path');
 
 const app = express();

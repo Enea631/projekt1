@@ -1,22 +1,22 @@
-/* Modal.scss */
+
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.4); /* Semi-transparent dark background */
+    background: rgba(0, 0, 0, 0.4); 
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Ensure it appears above all other content */
+    z-index: 9999; 
   }
   
   .modal-content {
     background: #fff;
     padding: 2rem;
-    border-radius: 12px; /* Rounded corners */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    border-radius: 12px; 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
     width: 400px;
     max-width: 90%;
     display: flex;
@@ -26,7 +26,7 @@
     transition: all 0.3s ease-in-out;
     transform: scale(1.1);
     opacity: 0;
-    animation: fadeIn 0.3s forwards; /* Animation for a smooth transition */
+    animation: fadeIn 0.3s forwards; 
   }
   
   @keyframes fadeIn {
@@ -66,12 +66,12 @@
       transition: border-color 0.3s ease;
   
       &:focus {
-        border-color: #8b0000; /* Focus color change */
+        border-color: #8b0000; 
         outline: none;
       }
     }
   
-    button.bm {
+    .bm {
       background-color: #8b0000;
       color: white;
       padding: 12px;
@@ -84,12 +84,12 @@
       transition: background-color 0.3s ease, transform 0.3s ease;
       
       &:hover {
-        background-color: #f8cfcf;
+        background-color: #600707;
         transform: translateY(-3px);
       }
   
       &:active {
-        transform: translateY(1px); /* Press effect */
+        transform: translateY(1px);
       }
     }
   }
@@ -105,7 +105,8 @@
     transition: color 0.3s ease;
   
     &:hover {
-      color: #e74c3c; /* Highlight color on hover */
+      color: #611d16; 
+       transform: translateY(-3px);
     }
   }
   

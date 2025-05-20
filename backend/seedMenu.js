@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const Menu = require('./models/MenuItem'); // Adjust the path as needed
+const Menu = require('./models/MenuItem'); 
 
 mongoose.connect(    "mongodb+srv://eneaburimi4:enea12@cluster0.2qyjstb.mongodb.net/projekt?retryWrites=true&w=majority&appName=Cluster0",
  );
 
  const seedItems = [
-    // Pasta
+   
     {
       itemName: 'Spaghetti Carbonara',
       itemDescription: 'Pasta with pancetta, eggs, Pecorino Romano, and black pepper.',

@@ -17,8 +17,8 @@ const AdminLogin = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/api/admin/login', formData);
-      localStorage.setItem('token', response.data.token); // Save token
-      navigate('/admin'); // Redirect to admin dashboard
+      localStorage.setItem('token', response.data.token); 
+      navigate('/admin'); 
     } catch (err) {
       setError('Invalid username or password');
     }

@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import React from 'react';
-import Modal from '../components/Modal'; // Import the Modal component
-import './About.scss'; // Make sure to have the corresponding SCSS file
+import Modal from '../components/Modal'; 
+import './About.scss'; 
 
 const About = () => {
-  // State to control modal visibility
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Function to open the modal
+  
   const openModal = () => {
     setIsModalOpen(true);
   };
 
-  // Function to close the modal
+  
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -34,7 +34,7 @@ const About = () => {
 
         <div className="about-btn-container">
           <button className="cta-button" onClick={openModal}>Reserve a Table</button>
-          {/* Assuming Modal is a separate component */}
+          
           <Modal isOpen={isModalOpen} onClose={closeModal} />
         </div>
       </div>
@@ -49,7 +49,6 @@ const About = () => {
         <p><strong>Address:</strong> 1234 Kavaja St, Tirana</p>
         <p><strong>Phone:</strong> (123) 456-7890</p>
 
-        {/* Embedded Google Map */}
         <div className="location-map">
           <iframe
             title="Google Map"
@@ -62,7 +61,7 @@ const About = () => {
           ></iframe>
         </div>
 
-        {/* Button to Get Directions or More Info */}
+        
         <div className="location-btn-container">
           <button
             className="location-button"

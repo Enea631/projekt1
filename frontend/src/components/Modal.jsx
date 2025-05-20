@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Modal.scss'; // Updated styles
+import './Modal.scss'; 
 
 const Modal = ({ isOpen, onClose }) => {
-  // State to manage form data
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,26 +12,26 @@ const Modal = ({ isOpen, onClose }) => {
     people: ''
   });
 
-  // Handle input change
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submit
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/api/bookings', formData);
       alert('Booking successful!');
-      onClose(); // Close modal after successful booking
+      onClose(); 
     } catch (err) {
       console.error(err);
       alert('Something went wrong. Please try again.');
     }
   };
 
-  if (!isOpen) return null; // Don't render the modal if it's not open
+  if (!isOpen) return null; 
 
   return (
     <div className="modal-overlay" onClick={onClose}>

@@ -26,8 +26,8 @@ const Navbar = () => {
     const query = searchQuery.trim();
   if (query) {
     navigate(`/search?query=${encodeURIComponent(query)}`);
-    setMenuOpen(false); // optionally close the menu if on mobile
-    setSearchQuery('');  // optionally clear the input
+    setMenuOpen(false); 
+    setSearchQuery(''); 
   
 };
       
@@ -73,13 +73,11 @@ const Navbar = () => {
 
 
 
-        {/* 📅 Book a Table Button */}
         <button className="cta-button nav-button" onClick={openModal}>
           Book a Table
         </button>
       </div>
 
-      {/* Modal */}
       <Modal isOpen={isModalOpen} onClose={closeModal} />
     </nav>
   );
